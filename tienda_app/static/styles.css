@@ -1,0 +1,68 @@
+/* General */
+body {
+    
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin:auto;
+    padding: 0;
+    color: #333;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 0.5rem;
+    position: fixed;
+    width: 80%;
+    bottom: 0;
+}
+
+/* Formularios */
+form {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+input, button {
+    display: block;
+    width: 50%;
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+/* Mensajes */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    color: green;
+    margin-bottom: 0.5rem;
+}

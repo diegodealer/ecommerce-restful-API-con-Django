@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/tienda_app/static/registro.css">
+    <title>Modificar usuario</title>
+</head>
+<body>
+    <h1>Modificar usuario</h1>
+    <form method="POST" action="{% url 'modificar_usuario' %}">
+        {% csrf_token %}
+        <input type="text" name="first_name" placeholder="Nuevo nombre" value="{{ user.first_name }}" required>
+        <input type="email" name="email" placeholder="Nuevo correo" value="{{ user.email }}" required>
+        <input type="password" name="password" placeholder="Nueva contraseña (dejar en blanco para no cambiar)">
+        <button type="submit">Modificar</button>
+    </form>
+    <a href="{% url 'busqueda' %}">Regresar</a>
+    
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,53 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapas</title>
+</head>
+<body>
+    <form method="POST"  id="locationForm">
+        {% csrf_token %}
+        <input type="text" name="lat" placeholder="Latitud"  id="lat" value = "{{lat}}">
+        <input type="text" name="lon" placeholder="Longitud" id="lon" value="{{lon}}">
+        <input type="submit" value="Enviar">
+    </form>
+    <div id="map"></div>
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+    <script>
+        document.getElementById('locationForm').addEventListener('submit', function(event){
+            let latitud = document.getElementById('lat').value
+            let longitud = document.getElementById('lon').value
+            alert(latitud+ '  T  ' +longitud)
+            iniciarMap(latitud, longitud);
+        });
+
+        function iniciarMap(latitud, longitud) {
+    var coord = {lat: parseFloat(latitud), lng: parseFloat(longitud)};
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 18,
+        center: coord
+    });
+    var marker = new google.maps.Marker({
+        position: coord,
+        map: map
+    });
+}
+
+window.onload = function() {
+    const latitud = document.getElementById('lat').value;
+    const longitud = document.getElementById('lon').value;
+    iniciarMap(latitud, longitud);
+};
+    </script>
+    
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>
+   
+</body>
+</html>

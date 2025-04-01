@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/tienda_app/static/registro.css/">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Registro de usuarios</h1>
+
+        {% if messages %}
+    <div>
+        {% for message in messages %}
+            <p class="alert alert-danger">{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <form method="POST" action="{% url 'registro' %}">
+        {% csrf_token %}
+        <input type="text" name="first_name" placeholder="Nombre" required autocomplete="given-name">  
+        <input type="email" name="email" placeholder="Correo" required autocomplete="email">
+        <input type="password" name="password" placeholder="Contraseña" required autocomplete="new-password">
+
+        <button type="submit" value="Registrar">Registrar</button>
+    </form>
+    <br>
+    <small>Ya estas registrado?</small>
+    <a href="{% url 'login' %}" type="button">Acceder</a>
+</body>
+</html>

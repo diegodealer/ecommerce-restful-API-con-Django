@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/tienda_app/static/styles.css">
+    <title>Subir Producto</title>
+
+</head>
+<body>
+    <h1>Subir Producto</h1>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form method="POST" enctype="multipart/form-data" action="{% url 'subir_producto' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="padding: 10px; background-color: #28a745; color: white; border: none; cursor: pointer;">Subir Producto</button>
+    </form>
+    <a href="{% url 'busqueda' %}">Regresar</a>
+</body>
+</html>

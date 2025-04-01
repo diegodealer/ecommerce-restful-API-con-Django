@@ -1,0 +1,97 @@
+{% load custom_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/tienda_app/static/busqueda.css">
+    <title>La Tiendita Gadget Shop</title>
+</head>
+<body>
+    <header>
+        <div class="user-profile">
+            <div class="user-avatar">
+                <span>{{ user.first_name|slice:":1" }}</span>
+            </div>
+            <a href="{% url 'modificar_usuario' %}" class="edit-profile">Editar Perfil</a>
+        </div>
+        <h1>La Tiendita Gadget Shop</h1>
+    </header>
+
+    {% if messages %}
+    <div class="messages-container">
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <form method="POST" action="{% url 'busqueda' %}">
+        {% csrf_token %}
+        <input type="text" name="nombre" placeholder="Busca productos o carrito e.j. auriculares" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <h2>Productos Disponibles</h2>
+    <div class="products-container">
+        {% for producto in productos %}
+        <div class="product-card">
+            <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+            <h3>{{ producto.nombre }}</h3>
+            <p>Precio: ${{ producto.precio }}</p>
+            <p>{{ producto.Descripcion }}</p>
+            <form method="POST" action="{% url 'agregar_al_carrito' producto.id %}">
+                {% csrf_token %}
+                <input type="hidden" name="cantidad" value="1">
+                <button type="submit">Agregar al Carrito</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2>Carrito de Compras</h2>
+    {% if carrito %}
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in carrito %}
+            <tr>
+                <td>{{ item.producto.nombre }}</td>
+                <td>${{ item.producto.precio }}</td>
+                <td>
+                    <form method="POST" action="{% url 'modificar_item_carrito' item.id %}">
+                        {% csrf_token %}
+                        <input type="number" name="cantidad" value="{{ item.cantidad }}" min="1">
+                        <button type="submit">Actualizar</button>
+                    </form>
+                </td>
+                <td>${{ item.cantidad|multiply:item.producto.precio }}</td>
+                <td>
+                    <form method="POST" action="{% url 'eliminar_producto' item.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-btn">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>Tu carrito está vacío</p>
+    {% endif %}
+
+    <div class="footer">
+        <a href="{% url 'subir_producto' %}" class="btn">Subir Producto</a>
+        <a href="{% url 'mapas' %}" class="btn">Ver Mapa</a>
+        <a href="{% url 'logout' %}" class="btn exit-button">Salir</a>
+    </div>
+</body>
+</html>
