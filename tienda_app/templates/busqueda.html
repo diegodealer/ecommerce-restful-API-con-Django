@@ -6,19 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/tienda_app/static/busqueda.css">
     <title>La Tiendita Gadget Shop</title>
-</head>
+</head> 
 <body>
     <header>
+        <!-- Encabezado de la página con información del usuario y título principal. -->
         <div class="user-profile">
             <div class="user-avatar">
                 <span>{{ user.first_name|slice:":1" }}</span>
+                <!-- Muestra la inicial del nombre del usuario. -->
             </div>
             <a href="{% url 'modificar_usuario' %}" class="edit-profile">Editar Perfil</a>
+            <!-- Enlace para editar el perfil del usuario. -->
         </div>
         <h1>La Tiendita Gadget Shop</h1>
+        <!-- Título principal de la tienda. -->
     </header>
 
     {% if messages %}
+    <!-- Muestra mensajes dinámicos como errores o confirmaciones. -->
     <div class="messages-container">
         {% for message in messages %}
             <p>{{ message }}</p>
@@ -28,22 +33,31 @@
 
     <form method="POST" action="{% url 'busqueda' %}">
         {% csrf_token %}
+        <!-- Token de seguridad CSRF. -->
         <input type="text" name="nombre" placeholder="Busca productos o carrito e.j. auriculares" required>
+        <!-- Campo de búsqueda para ingresar el nombre del producto. -->
         <button type="submit">Buscar</button>
+        <!-- Botón para enviar el formulario de búsqueda. -->
     </form>
 
     <h2>Productos Disponibles</h2>
     <div class="products-container">
+        <!-- Lista de productos disponibles. -->
         {% for producto in productos %}
         <div class="product-card">
             <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+            <!-- Imagen del producto. -->
             <h3>{{ producto.nombre }}</h3>
+            <!-- Nombre del producto. -->
             <p>Precio: ${{ producto.precio }}</p>
+            <!-- Precio del producto. -->
             <p>{{ producto.Descripcion }}</p>
+            <!-- Descripción del producto. -->
             <form method="POST" action="{% url 'agregar_al_carrito' producto.id %}">
                 {% csrf_token %}
                 <input type="hidden" name="cantidad" value="1">
                 <button type="submit">Agregar al Carrito</button>
+                <!-- Botón para agregar el producto al carrito. -->
             </form>
         </div>
         {% endfor %}
@@ -51,6 +65,7 @@
 
     <h2>Carrito de Compras</h2>
     {% if carrito %}
+    <!-- Tabla que muestra los productos en el carrito si hay elementos. -->
     <table>
         <thead>
             <tr>
@@ -71,13 +86,16 @@
                         {% csrf_token %}
                         <input type="number" name="cantidad" value="{{ item.cantidad }}" min="1">
                         <button type="submit">Actualizar</button>
+                        <!-- Botón para actualizar la cantidad del producto en el carrito. -->
                     </form>
                 </td>
                 <td>${{ item.cantidad|multiply:item.producto.precio }}</td>
+                <!-- Muestra el total calculado (cantidad * precio). -->
                 <td>
                     <form method="POST" action="{% url 'eliminar_producto' item.id %}">
                         {% csrf_token %}
                         <button type="submit" class="delete-btn">Eliminar</button>
+                        <!-- Botón para eliminar el producto del carrito. -->
                     </form>
                 </td>
             </tr>
@@ -86,12 +104,16 @@
     </table>
     {% else %}
     <p>Tu carrito está vacío</p>
+    <!-- Mensaje mostrado si el carrito está vacío. -->
     {% endif %}
 
     <div class="footer">
         <a href="{% url 'subir_producto' %}" class="btn">Subir Producto</a>
+        <!-- Enlace para subir un nuevo producto. -->
         <a href="{% url 'mapas' %}" class="btn">Ver Mapa</a>
+        <!-- Enlace para ver el mapa. -->
         <a href="{% url 'logout' %}" class="btn exit-button">Salir</a>
+        <!-- Enlace para cerrar sesión. -->
     </div>
 </body>
 </html>

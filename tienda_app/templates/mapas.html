@@ -1,4 +1,3 @@
- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,47 +6,65 @@
     <title>Mapas</title>
 </head>
 <body>
-    <form method="POST"  id="locationForm">
+    <!-- Formulario para enviar coordenadas de latitud y longitud al servidor. -->
+    <form method="POST" id="locationForm">
         {% csrf_token %}
-        <input type="text" name="lat" placeholder="Latitud"  id="lat" value = "{{lat}}">
+        <!-- Django agrega un token de seguridad para proteger contra ataques CSRF. -->
+        <input type="text" name="lat" placeholder="Latitud" id="lat" value="{{lat}}">
+        <!-- Campo de entrada para la latitud, con un valor precargado desde la variable de Django '{{lat}}'. -->
         <input type="text" name="lon" placeholder="Longitud" id="lon" value="{{lon}}">
+        <!-- Campo de entrada para la longitud, con un valor precargado desde la variable de Django '{{lon}}'. -->
         <input type="submit" value="Enviar">
+        <!-- Botón para enviar el formulario. -->
     </form>
+
     <div id="map"></div>
+    <!-- Div donde se renderizará el mapa de Google Maps. -->
+
     <style>
         #map {
             height: 500px;
             width: 100%;
+            /* Estilo para establecer dimensiones del mapa. */
         }
     </style>
+
     <script>
+        // Escucha el evento 'submit' del formulario para capturar coordenadas y actualizar el mapa.
         document.getElementById('locationForm').addEventListener('submit', function(event){
-            let latitud = document.getElementById('lat').value
-            let longitud = document.getElementById('lon').value
-            alert(latitud+ '  T  ' +longitud)
+            let latitud = document.getElementById('lat').value;
+            let longitud = document.getElementById('lon').value;
+            alert(latitud + '  T  ' + longitud);
+            // Muestra un mensaje con las coordenadas capturadas.
             iniciarMap(latitud, longitud);
+            // Llama a la función para inicializar el mapa con las coordenadas dadas.
         });
 
         function iniciarMap(latitud, longitud) {
-    var coord = {lat: parseFloat(latitud), lng: parseFloat(longitud)};
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 18,
-        center: coord
-    });
-    var marker = new google.maps.Marker({
-        position: coord,
-        map: map
-    });
-}
+            // Función para inicializar el mapa con Google Maps.
+            var coord = {lat: parseFloat(latitud), lng: parseFloat(longitud)};
+            // Convierte las coordenadas a números flotantes y las prepara para el mapa.
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 18,
+                center: coord
+                // Configura el mapa con el zoom y centra en las coordenadas proporcionadas.
+            });
+            var marker = new google.maps.Marker({
+                position: coord,
+                map: map
+                // Agrega un marcador en las coordenadas dadas.
+            });
+        }
 
-window.onload = function() {
-    const latitud = document.getElementById('lat').value;
-    const longitud = document.getElementById('lon').value;
-    iniciarMap(latitud, longitud);
-};
+        window.onload = function() {
+            // Inicializa el mapa al cargar la página con las coordenadas actuales en los campos de entrada.
+            const latitud = document.getElementById('lat').value;
+            const longitud = document.getElementById('lon').value;
+            iniciarMap(latitud, longitud);
+        };
     </script>
-    
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>
-   
+    <!-- Carga la biblioteca de Google Maps con una clave API e inicia el mapa con 'iniciarMap'. -->
 </body>
 </html>

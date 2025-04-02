@@ -37,10 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tienda_app'
+    'tienda_app' # Agregamos nuestra aplicacion en caso de que no este
 ]
 
-AUTH_USER_MODEL = 'tienda_app.CustomUser'
+AUTH_USER_MODEL = 'tienda_app.CustomUser' # En caso de tener un model customisado de la clase abstracta 
+# De preferencia se debe de agregar
 
 
 MIDDLEWARE = [
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'tiendita.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / 'templates'], # Agregamos la ruta de nuestros templates para que se vizualizen las paginas html.
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,10 +123,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = '/tienda_app/static/'
-STATICFILES_DIRS = [BASE_DIR / "styles"]  # Ruta donde están tus estilos
+STATIC_URL = '/tienda_app/static/' # Agregamos la url de nuestros estilos css
+STATICFILES_DIRS = [BASE_DIR / "styles"]  # Ruta donde están los estilos.
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/media/' # Agregamos la url y direcccion de nuestra carpeta media para guardar e insertar imagenes
 MEDIA_ROOT = BASE_DIR / 'media'
 
 

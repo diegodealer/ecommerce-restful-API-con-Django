@@ -2,25 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- Define la codificación de caracteres como UTF-8, compatible con caracteres internacionales. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Ajusta el contenido de la página para que sea responsivo en dispositivos móviles. -->
     <link rel="stylesheet" href="/tienda_app/static/styles.css">
+    <!-- Vincula una hoja de estilo externa para personalizar los estilos de esta página. -->
     <title>Subir Producto</title>
-
+    <!-- Establece el título de la página, que será visible en la pestaña del navegador. -->
 </head>
 <body>
     <h1>Subir Producto</h1>
+    <!-- Título principal que describe la funcionalidad de la página. -->
+
     {% if messages %}
+    <!-- Bloque condicional de Django que verifica si hay mensajes para mostrar. -->
         <ul>
             {% for message in messages %}
+            <!-- Itera sobre todos los mensajes proporcionados desde la vista de Django. -->
                 <li>{{ message }}</li>
+                <!-- Muestra cada mensaje dentro de un elemento de lista. -->
             {% endfor %}
         </ul>
     {% endif %}
+    <!-- Fin del bloque de mensajes condicionales. -->
+
     <form method="POST" enctype="multipart/form-data" action="{% url 'subir_producto' %}">
+        <!-- Formulario para subir un producto con soporte para archivos (por ejemplo, imágenes). -->
         {% csrf_token %}
+        <!-- Token CSRF para proteger el formulario contra ataques de falsificación de solicitudes. -->
         {{ form.as_p }}
-        <button type="submit" style="padding: 10px; background-color: #28a745; color: white; border: none; cursor: pointer;">Subir Producto</button>
+        <!-- Renderiza automáticamente el formulario definido en la vista como párrafos (<p>). -->
+        <button type="submit" style="padding: 10px; background-color: #28a745; color: white; border: none; cursor: pointer;">
+            Subir Producto
+        </button>
+        <!-- Botón estilizado para enviar el formulario. -->
     </form>
+
     <a href="{% url 'busqueda' %}">Regresar</a>
+    <!-- Enlace para regresar a la vista asociada a 'busqueda'. -->
 </body>
 </html>

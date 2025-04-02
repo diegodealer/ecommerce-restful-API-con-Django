@@ -7,26 +7,28 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Registro de usuarios</h1>
+    <h1>Registro de usuarios</h1>  <!-- Titulo del principal-->
 
         {% if messages %}
     <div>
         {% for message in messages %}
-            <p class="alert alert-danger">{{ message }}</p>
+        <!--Comprueba si existen mensajes para mostrar 
+        (por ejemplo, mensajes de error o éxito generados en la vista de Django).-->
+            <p class="alert alert-danger">{{ message }}</p> <!--Muestra cada mensaje dentro de un párrafo con una clase CSS para el estilo.-->
         {% endfor %}
     </div>
     {% endif %}
 
-    <form method="POST" action="{% url 'registro' %}">
-        {% csrf_token %}
-        <input type="text" name="first_name" placeholder="Nombre" required autocomplete="given-name">  
-        <input type="email" name="email" placeholder="Correo" required autocomplete="email">
-        <input type="password" name="password" placeholder="Contraseña" required autocomplete="new-password">
-
-        <button type="submit" value="Registrar">Registrar</button>
+    <form method="POST" action="{% url 'registro' %}"> <!-- Define un formulario con método POST que envía los datos al endpoint de la URL llamada 'registro'  definida en urls.py -->
+        {% csrf_token %} <!--Genera un token CSRF (Cross-Site Request Forgery) para proteger el formulario contra ataques maliciosos.-->
+        <input type="text" name="first_name" placeholder="Nombre" required autocomplete="given-name">  <!-- Campo de texto para ingresar el nombre de usuario-->
+        <input type="email" name="email" placeholder="Correo" required autocomplete="email"> <!-- Campo de texto para ingresar el email-->
+        <input type="password" name="password" placeholder="Contraseña" required autocomplete="new-password"> <!--Campo para ingresar una contraseña -->
+        
+        <button type="submit" value="Registrar">Registrar</button> <!-- Boton para enviar el formulario-->
     </form>
     <br>
-    <small>Ya estas registrado?</small>
-    <a href="{% url 'login' %}" type="button">Acceder</a>
+    <small>Ya estas registrado?</small> 
+    <a href="{% url 'login' %}" type="button">Acceder</a> <!-- Texto y enlace para enviar a los usuarios existentes a la pagina de login-->
 </body>
 </html>

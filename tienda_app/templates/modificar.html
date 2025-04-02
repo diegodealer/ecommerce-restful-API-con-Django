@@ -4,23 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/tienda_app/static/registro.css">
-    <title>Modificar usuario</title>
+    <title>Modificar usuario</title> <!-- Titulo principal-->
 </head>
 <body>
-    <h1>Modificar usuario</h1>
+    <h1>Modificar usuario</h1> <!-- Titulo del formulario-->
     <form method="POST" action="{% url 'modificar_usuario' %}">
+        <!-- El formulario envía datos al servidor usando el método POST hacia la URL asociada a la vista 'modificar_usuario'. -->
         {% csrf_token %}
+        <!-- Agrega un token CSRF para proteger el formulario contra ataques de falsificación de solicitudes. -->
+        
         <input type="text" name="first_name" placeholder="Nuevo nombre" value="{{ user.first_name }}" required>
+        <!-- Campo para ingresar el nuevo nombre del usuario.
+             - Precarga el nombre actual del usuario usando 'value="{{ user.first_name }}"'.
+             - 'required' hace obligatorio llenar el campo. -->
+        
         <input type="email" name="email" placeholder="Nuevo correo" value="{{ user.email }}" required>
+        <!-- Campo para ingresar el nuevo correo electrónico del usuario.
+             - Precarga el correo actual del usuario con 'value="{{ user.email }}"'.
+             - 'required' asegura que este campo no quede vacío. -->
+        
         <input type="password" name="password" placeholder="Nueva contraseña (dejar en blanco para no cambiar)">
+        <!-- Campo para ingresar una nueva contraseña. El usuario puede dejarlo en blanco si no desea cambiar la contraseña. -->
+        
         <button type="submit">Modificar</button>
+        <!-- Botón para enviar el formulario al servidor y aplicar las modificaciones. -->
     </form>
+    
     <a href="{% url 'busqueda' %}">Regresar</a>
+    <!-- Enlace que redirige al usuario a la vista asociada a 'busqueda', permitiendo regresar a la página principal. -->
     
     {% if messages %}
+    <!-- Bloque condicional para mostrar mensajes si existen. -->
     <div class="messages">
         {% for message in messages %}
             <p>{{ message }}</p>
+            <!-- Itera sobre cada mensaje en 'messages' y lo muestra en un párrafo. -->
         {% endfor %}
     </div>
     {% endif %}
