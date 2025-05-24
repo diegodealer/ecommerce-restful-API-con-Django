@@ -32,20 +32,36 @@ Por último, para correr el servidor y acceder al sitio web, ejecuta:
 
 Instrucciones para Linux:
 
-Los pasos son casi iguales, solo cambia la forma de activar el entorno virtual (venv).
+Los pasos son casi iguales, solo cambia la forma de activar el entorno virtual.
 
-    El entorno virtual se encuentra en la carpeta venv, y dentro de ella está la carpeta bin con los ejecutables .sh.
+Importante: El entorno virtual (venv) no está incluido en el repositorio, por lo que debes crearlo tú mismo en Linux siguiendo estos pasos:
 
-    Para activar el entorno virtual, ejecuta en la terminal:
+    Abre la terminal y navega a la carpeta raíz del proyecto (donde está manage.py).
+
+    Crea el entorno virtual con el siguiente comando:
+
+python3 -m venv venv
+
+Activa el entorno virtual:
+
+    Si usas una terminal estándar (bash, zsh):
 
 source venv/bin/activate
 
-En caso de que no uses terminales comunes (como bash o zsh), y por ejemplo uses fish, deberás indicarlo así:
+Si usas fish shell:
 
-source venv/bin/activate.fish
+    source venv/bin/activate.fish
 
-Por último, para correr el servidor y acceder a la página web:
+Una vez activado el entorno virtual, instala las dependencias necesarias (incluyendo Django y Pillow, si no las tienes instaladas):
+
+pip install -r requirements.txt
+
+Si no tienes un archivo requirements.txt, instala Django y Pillow manualmente:
+
+pip install django pillow
+
+Para correr el servidor y acceder a la página web, ejecuta:
 
     python manage.py runserver
 
-Y listo, ¡creo que eso es todo lo que necesitas saber! :v
+¡Y listo! Así podrás usar el proyecto en Linux sin problemas.
