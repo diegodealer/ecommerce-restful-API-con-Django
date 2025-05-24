@@ -83,9 +83,9 @@ def login_view(request):
             # Verifica si el usuario existe 
             User = get_user_model()
             if not User.objects.filter(username=username).exists():
-                messages.error(request, "Usuario no encontrado")
+                messages.error(request, "Contraseña o usuario incorrecto")
             else:
-                messages.error(request, "Contraseña incorrecta")
+                messages.error(request, "Contraseña o usuario incorrecto")
     
     return render(request, 'login.html')
 
