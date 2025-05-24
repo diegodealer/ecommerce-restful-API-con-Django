@@ -1,39 +1,51 @@
-Proyecto e-commerce CON restful API Django
+Proyecto E-commerce con RESTful API en Django
 
+Este proyecto fue realizado para una materia que se me pidió, aunque es bastante interesante si quieres adentrarte en el mundo de las RESTful API o aprender Django. Así que eres libre de revisar este proyecto.
 
-Este proyecto fue hecho para una materia que se me pidio, aunque es bastante interesante si quieres entrar al mundo de las restful-apui 
-o quieres aprender Django, asi que eres libre de ver este proyecto. 
+En caso de que quieras probarlo, es importante que sepas que puede usarse tanto en Windows como en Linux.
+Instrucciones para Windows:
 
-En caso de que quieras probarlo es importante que sepas que e puede usar tanto en windows como en linux 
-para windows tienes que:
+    Tener instalado Python 3.11 o superior, junto con su gestor de paquetes llamado pip (esto debería ser muy obvio, pero tengo mis dudas).
 
-- tener instalado pytjon 3.11 en delante con su gestor de paquetes llamado pip (esto debe ser muy obvio pero tengo mis dudas)
+    Tener Django instalado en tu computadora.
+    Si no sabes cómo configurarlo, visita el sitio oficial y consulta la documentación:
+    https://www.djangoproject.com/
+    Ahí te explican paso a paso cómo instalarlo y configurarlo.
 
-- tener Djhango instalado en tu computadora (si no sabes como configurarlo ve al sitio web oficial y consulta la documentacion https://www.djangoproject.com/,
-alli te diran paso a paso como instalarlo y configurarlo).
+    Una vez que clones el repositorio, verás una carpeta llamada Scripts/.
 
-- si ya tienes Django instalado  cuando clones el repositorio veras una carpeta llamada Scripts/
+    Para activar el entorno virtual, usa el siguiente comando en la terminal:
 
-- asi que si tienes para activarlo usaras el siguiente directorio "venv\Scripts\activate"
-con dar click se activara automaticamente el entorno virtual
+venv\Scripts\activate
 
-- en caso de algun error tambien se podria deber a que el proyecto soporta insercion de imagenes por lo que tendras que instalar pillow
-utilizando el siguiente comando "pip install Pillow".
+Al ejecutarlo, el entorno virtual se activará automáticamente.
 
-- por ultimo para correr el servidor y acceder a la pagina web y todo el proyecto deberas poner este comando en la terminal
-- "python manage.py runserver"
+En caso de error, podría deberse a que el proyecto admite la inserción de imágenes, por lo que deberás instalar Pillow con el siguiente comando:
 
-- ese comando te dara la ip para acceder y se abrira en tu navegador de preferencia.
+pip install Pillow
 
-Ahora para linux son casi iguales los comandos solamente que en el venv (entorno virtual) la cosa es diferente
+Por último, para correr el servidor y acceder al sitio web, ejecuta:
 
-- en este caso el entorno virtual para usar el proyecto con linux es la carpeta "venv" dentro de ella estara la carpeta bin con los ejecutables .sh
+    python manage.py runserver
 
-- para activar el venv entonces deberas poner lo siguiente en la terminal "source venv/bin/activate"
+    Este comando te dará la IP local para acceder al proyecto, y se abrirá en tu navegador predeterminado.
 
-- en caso de que no uses las terminales comunes y por ejemplo uses fish debes señalarlo al final de la ruta
-- "source venv/bin/activate.fish"
+Instrucciones para Linux:
 
-- por ultimo para correr el servidor y acceder a la pagina web: "python manage.py runserver"
+Los pasos son casi iguales, solo cambia la forma de activar el entorno virtual (venv).
 
-y listo creo que es todo lo que necesitas saber :v
+    El entorno virtual se encuentra en la carpeta venv, y dentro de ella está la carpeta bin con los ejecutables .sh.
+
+    Para activar el entorno virtual, ejecuta en la terminal:
+
+source venv/bin/activate
+
+En caso de que no uses terminales comunes (como bash o zsh), y por ejemplo uses fish, deberás indicarlo así:
+
+source venv/bin/activate.fish
+
+Por último, para correr el servidor y acceder a la página web:
+
+    python manage.py runserver
+
+Y listo, ¡creo que eso es todo lo que necesitas saber! :v
